@@ -1,0 +1,62 @@
+Table users {
+  id int [pk, increment]
+  name varchar
+  email varchar [unique]
+  password_hash varchar
+  role varchar
+  created_at timestamp
+}
+
+Table candidate_profiles {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  phone varchar
+  resume varchar
+  experience int
+  location varchar
+}
+
+Table employer_profiles {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  company_name varchar
+  company_email varchar
+  company_location varchar
+}
+
+Table jobs {
+  id int [pk, increment]
+  employer_id int [ref: > employer_profiles.id]
+  title varchar
+  description text
+  location varchar
+  salary decimal
+  job_type varchar
+  deadline date
+   
+}
+
+Table applications {
+  id int [pk, increment]
+  job_id int [ref: > jobs.id]
+  candidate_id int [ref: > candidate_profiles.id]
+  status varchar
+  applied_at timestamp
+}
+
+Table skills {
+  id int [pk, increment]
+  skill_name varchar
+}
+
+Table candidate_skills {
+  candidate_id int [ref: > candidate_profiles.id]
+  skill_id int [ref: > skills.id]
+}
+
+Table notifications {
+  id int [pk, increment]
+  user_id int [ref: > users.id]
+  message text
+  status varchar
+}
