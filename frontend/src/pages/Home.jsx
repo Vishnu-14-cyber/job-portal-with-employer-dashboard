@@ -8,7 +8,7 @@ function Home() {
         <p>Search thousands of jobs from top companies.</p>
         <button
           className="btn btn-light me-2"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/jobs")}
         >
           Find Jobs
         </button>
@@ -19,40 +19,31 @@ function Home() {
           Employer Login
         </button>
       </div>
-      <div className="row mt-5">
-        <div className="col-md-4">
-          <div className="card shadow">
-            <div className="card-body">
-              <h4>Software Developer</h4>
-              <p>Company: Google</p>
-              <button className="btn btn-primary">
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card shadow">
-            <div className="card-body">
-              <h4>Python Developer</h4>
-              <p>Company: Microsoft</p>
-              <button className="btn btn-primary">
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card shadow">
-            <div className="card-body">
-              <h4>Frontend Developer</h4>
-              <p>Company: Amazon</p>
-              <button className="btn btn-primary">
-                Apply
-              </button>
-            </div>
-          </div>
-        </div>
+      <div className="d-flex justify-content-end mt-3">
+        <button
+          className="btn btn-outline-primary me-2"
+          onClick={() => navigate("/")}
+        >
+          Home
+        </button>
+        <button
+          className="btn btn-outline-primary me-2"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </button>
+        <button
+          className="btn btn-outline-primary me-2"
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </button>
+        <button
+          className="btn btn-outline-primary"
+          onClick={() => navigate("/dashboard")}
+        >
+          Dashboard
+        </button>
       </div>
     </div>
   );
