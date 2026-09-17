@@ -7,7 +7,7 @@ function EmployerDashboard() {
   const [jobs, setJobs] = useState([]);
   const loadJobs = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/jobs/");
+      const res = await axios.get("https://127.0.0.1:8000/jobs/");
       setJobs(res.data);
     } catch (err) {
       console.log(err);
@@ -18,7 +18,7 @@ function EmployerDashboard() {
   }, []);
   const handlePostJob = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:8000/jobs/create", {
+      const res = await axios.post("https://127.0.0.1:8000/jobs/create", {
         title: title,
         company_name: company,
         location: "Chennai",

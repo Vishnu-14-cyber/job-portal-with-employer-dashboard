@@ -9,10 +9,22 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["https://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 app.include_router(auth_router)
 app.include_router(job_router, prefix="/jobs", tags=["Jobs"])
+
+if __name__ == "__main__":
+    import uvicorn
+    from pathlib import Path
+    _dir = Path(__file__).resolve().parent.parent
+    uvicorn.run(
+        app,
+        host="127.0.0.1",
+        port=8000,
+        ssl_keyfile=str(_dir / "key.pem"),
+        ssl_certfile=str(_dir / "cert.pem"),
+    )
