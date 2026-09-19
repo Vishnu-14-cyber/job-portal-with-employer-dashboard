@@ -2,6 +2,10 @@ fastapi
 uvicorn
 sqlalchemy
 pydantic
+python-jose
+passlib[bcrypt]
+python-multipart
+psycopg2-binary
 python-dotenv
 pytest
 httpx<0.28
