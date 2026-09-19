@@ -9,7 +9,7 @@ function Jobs() {
   const [appliedJobs, setAppliedJobs] = useState([]);
 
   useEffect(() => {
-    fetch("https://127.0.0.1:8000/jobs/")
+    fetch("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/")
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.log(err));
@@ -24,7 +24,7 @@ function Jobs() {
 
   const handleApply = async (jobId) => {
     try {
-      const res = await fetch(`https://127.0.0.1:8000/jobs/apply/${jobId}`, {
+      const res = await fetch(`https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/apply/${jobId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
