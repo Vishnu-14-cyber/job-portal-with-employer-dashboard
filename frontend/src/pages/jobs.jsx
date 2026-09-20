@@ -9,7 +9,7 @@ function Jobs() {
   const [appliedJobs, setAppliedJobs] = useState([]);
 
   useEffect(() => {
-    fetch("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/")
+    fetch("/api/jobs/")
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.log(err));
@@ -24,7 +24,7 @@ function Jobs() {
 
   const handleApply = async (jobId) => {
     try {
-      const res = await fetch(`https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/apply/${jobId}`, {
+      const res = await fetch(`/api/jobs/apply/${jobId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

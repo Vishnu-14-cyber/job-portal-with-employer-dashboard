@@ -8,7 +8,7 @@ function Register() {
   const [password, setPassword] = useState("");
   const handleRegister = async () => {
     try {
-      const res = await axios.post("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/auth/register", {
+      const res = await axios.post("/api/auth/register", {
         company_name: companyName,
         username: companyName,
         email: email,

@@ -12,7 +12,7 @@ function EmployerDashboard() {
   const [jobs, setJobs] = useState([]);
   const loadJobs = async () => {
     try {
-      const res = await axios.get("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/");
+      const res = await axios.get("/api/jobs/");
       setJobs(res.data);
     } catch (err) {
       console.log(err);
@@ -23,7 +23,7 @@ function EmployerDashboard() {
   }, []);
   const handlePostJob = async () => {
     try {
-      const res = await axios.post("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/create", {
+      const res = await axios.post("/api/jobs/create", {
         title: title,
         company_name: company,
         location: location,

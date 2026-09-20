@@ -12,12 +12,21 @@ const hasHttps = fs.existsSync(keyPath) && fs.existsSync(certPath)
 
 export default defineConfig({
   plugins: [react()],
-  server: hasHttps
-    ? {
-        https: {
-          key: fs.readFileSync(keyPath),
-          cert: fs.readFileSync(certPath),
-        },
-      }
-    : {},
+  server: {
+    ...(hasHttps
+      ? {
+          https: {
+            key: fs.readFileSync(keyPath),
+            cert: fs.readFileSync(certPath),
+          },
+        }
+      : {}),
+    proxy: {
+      "/api": {
+        target: "http://localhost:8000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 })

@@ -8,7 +8,7 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://job-portal-with-employer-dashboard-production-edde.up.railway.app/auth/login",
+        "/api/auth/login",
         {
           email,
           password
