@@ -6,9 +6,11 @@ def register_user(db: Session, user: UserCreate):
     if existing_user:
         return {"message": "Email already registered"}
     new_user = User(
-        username=user.username,
+        username=user.username or user.company_name,
+        company_name=user.company_name,
         email=user.email,
-        password=user.password
+        password=user.password,
+        role=user.role or "employer"
     )
     db.add(new_user)
     db.commit()
