@@ -8,7 +8,7 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://127.0.0.1:8000/auth/login",
+        "https://job-portal-with-employer-dashboard-production-edde.up.railway.app/auth/login",
         {
           email,
           password

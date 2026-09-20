@@ -3,11 +3,16 @@ import axios from "axios";
 function EmployerDashboard() {
   const [title, setTitle] = useState("");
   const [company, setCompany] = useState("");
+  const [location, setLocation] = useState("");
+  const [salary, setSalary] = useState("");
+  const [experience, setExperience] = useState("");
+  const [jobType, setJobType] = useState("");
+  const [skills, setSkills] = useState("");
   const [description, setDescription] = useState("");
   const [jobs, setJobs] = useState([]);
   const loadJobs = async () => {
     try {
-      const res = await axios.get("https://127.0.0.1:8000/jobs/");
+      const res = await axios.get("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/");
       setJobs(res.data);
     } catch (err) {
       console.log(err);
@@ -18,19 +23,24 @@ function EmployerDashboard() {
   }, []);
   const handlePostJob = async () => {
     try {
-      const res = await axios.post("https://127.0.0.1:8000/jobs/create", {
+      const res = await axios.post("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/jobs/create", {
         title: title,
         company_name: company,
-        location: "Chennai",
-        salary: "8 LPA",
-        experience: "2 Years",
-        job_type: "Full Time",
+        location: location,
+        salary: salary,
+        experience: experience,
+        job_type: jobType,
         description: description,
-        skills: "Python, FastAPI",
+        skills: skills,
       });
       alert(res.data.message);
       setTitle("");
       setCompany("");
+      setLocation("");
+      setSalary("");
+      setExperience("");
+      setJobType("");
+      setSkills("");
       setDescription("");
       loadJobs();
     } catch (err) {
@@ -70,19 +80,65 @@ function EmployerDashboard() {
       <div className="card shadow">
         <div className="card-body">
           <h3>Post New Job</h3>
+          <div className="row">
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Job Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Company Name"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+              />
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
+            </div>
+            <div className="col-md-6">
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Salary (e.g. 8 LPA)"
+                value={salary}
+                onChange={(e) => setSalary(e.target.value)}
+              />
+              <input
+                type="text"
+                className="form-control mb-3"
+                placeholder="Experience (e.g. 2 Years)"
+                value={experience}
+                onChange={(e) => setExperience(e.target.value)}
+              />
+              <select
+                className="form-control mb-3"
+                value={jobType}
+                onChange={(e) => setJobType(e.target.value)}
+              >
+                <option value="">Select Job Type</option>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+                <option value="Remote">Remote</option>
+              </select>
+            </div>
+          </div>
           <input
             type="text"
             className="form-control mb-3"
-            placeholder="Job Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <input
-            type="text"
-            className="form-control mb-3"
-            placeholder="Company Name"
-            value={company}
-            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Skills (e.g. Python, FastAPI)"
+            value={skills}
+            onChange={(e) => setSkills(e.target.value)}
           />
           <textarea
             className="form-control mb-3"
