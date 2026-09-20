@@ -164,6 +164,9 @@ function EmployerDashboard() {
                 <th>Company</th>
                 <th>Location</th>
                 <th>Salary</th>
+                <th>Experience</th>
+                <th>Job Type</th>
+                <th>Skills</th>
               </tr>
             </thead>
             <tbody>
@@ -173,6 +176,9 @@ function EmployerDashboard() {
                   <td>{job.company_name}</td>
                   <td>{job.location}</td>
                   <td>{job.salary}</td>
+                  <td>{job.experience}</td>
+                  <td>{job.job_type}</td>
+                  <td>{job.skills}</td>
                 </tr>
               ))}
             </tbody>
