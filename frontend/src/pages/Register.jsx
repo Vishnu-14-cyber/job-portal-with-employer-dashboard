@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Register() {
+  const navigate = useNavigate();
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,16 +10,23 @@ function Register() {
     try {
       const res = await axios.post("https://job-portal-with-employer-dashboard-production-edde.up.railway.app/auth/register", {
         company_name: companyName,
+        username: companyName,
         email: email,
         password: password,
+        role: "employer",
       });
       alert(res.data.message);
       setCompanyName("");
       setEmail("");
       setPassword("");
+      navigate("/login");
     } catch (err) {
       console.log(err);
-      alert("Registration Failed");
+      if (err.response && err.response.data && err.response.data.detail) {
+        alert("Registration Failed: " + JSON.stringify(err.response.data.detail));
+      } else {
+        alert("Registration Failed");
+      }
     }
   };
   return (
